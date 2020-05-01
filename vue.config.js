@@ -30,7 +30,7 @@ const faviconPluginOptions = {
 
 const outputDir = path.resolve(__dirname, './docs');
 const developPath = '/';
-const productionPath = '/';
+const productionPath = '/CarRent/';
 const publicPath = process.env.NODE_ENV === 'production' ? productionPath : developPath;
 
 module.exports = {
