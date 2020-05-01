@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <TermsModal
+      v-if="termsIsVisible"
+      @accept="acceptHandler"
+    />
     <Header />
     <div class="container container_page">
       <City />
@@ -17,6 +21,9 @@
 </template>
 
 <script>
+  import $cookies from 'vue-cookies';
+
+  import TermsModal from './components/TermsModal';
   import Header from './components/Header';
   import City from './components/City';
   import Splash from './components/Splash';
@@ -25,9 +32,12 @@
   import Terms from './components/Terms';
   import Footer from './components/Footer';
 
+  const TERMS_COOKIE_NAME = 'terms_is_accepted';
+
   export default {
     name: 'App',
     components: {
+      TermsModal,
       Header,
       City,
       Splash,
@@ -36,14 +46,37 @@
       Terms,
       Footer,
     },
-};
+    data() {
+      return {
+        termsIsAccepted: false,
+        termsWasAccepted: false,
+      };
+    },
+    computed: {
+      termsIsVisible() {
+        return !(this.termsIsAccepted || this.termsWasAccepted);
+      },
+    },
+    created() {
+      this.setTermsIsVisible();
+    },
+    methods: {
+      setTermsIsVisible() {
+        const stringValue = $cookies.get(TERMS_COOKIE_NAME) || 'false';
+        this.termsWasAccepted = JSON.parse(stringValue);
+      },
+      acceptHandler() {
+        this.termsIsAccepted = true;
+      },
+    },
+  };
 </script>
 
 <style>
   @import "~bootstrap/dist/css/bootstrap.css";
   @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap&subset=cyrillic');
 
-  html{
+  html {
     scroll-behavior: smooth;
   }
 
