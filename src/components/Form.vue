@@ -41,7 +41,7 @@
           <Abutton
             class="button__send-item"
             :theme="buttonTheme"
-            :disabled="formWasSend || !terms"
+            :disabled="formWasSend || !formIsReady"
             @click="formSubmit"
           >
             {{ translator.send }}
@@ -103,6 +103,13 @@
           userPhone: this.formData.phone,
           userName: this.formData.name,
         };
+      },
+      formIsReady() {
+        const name = this.formData.name;
+        const phone = this.formData.phone;
+        const terms = this.terms;
+
+        return name.length && phone.length && terms;
       },
     },
     methods: {
