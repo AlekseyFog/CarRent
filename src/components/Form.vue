@@ -1,45 +1,64 @@
 <template>
-  <div class="form" :class= "wide && 'form_wide'" >
-    <div class="form__text">{{ translator.formHeader }}</div>
+  <div
+    class="form"
+    :class="wide && 'form_wide'"
+  >
+    <div class="form__text">
+      {{ translator.formHeader }}
+    </div>
     <form class="form__wrapper container">
       <div class="row">
         <div class="col-12">
-          <input class="form-control" required="" type="text" :placeholder="translator.name">
+          <input
+            class="form-control"
+            required=""
+            type="text"
+            :value="formData.name"
+            :placeholder="translator.name"
+            @input="setFormValue($event, 'name')"
+          />
         </div>
       </div>
       <div class="row pt-1">
         <div class="col-12">
-          <input class="form-control" required="" type="tel"  :placeholder="translator.phone">
+          <input
+            class="form-control"
+            required=""
+            type="tel"
+            :value="formData.phone"
+            :placeholder="translator.phone"
+            @input="setFormValue($event, 'phone')"
+          />
         </div>
       </div>
       <div class="row pt-3">
         <div class="button__send col-12 col-sm-6">
-          <Abutton class="button__send-item" :theme="buttonTheme">
+          <Abutton
+            class="button__send-item"
+            :theme="buttonTheme"
+          >
             {{ translator.send }}
           </Abutton>
         </div>
         <div class="agree col-12 col-sm-6">
-          <input type="checkbox" checked> Согласен c договором оферты и даю свое согласие на обработку персональных данных
+          <input
+            type="checkbox"
+            checked
+          /> Согласен c договором оферты и даю свое согласие на обработку персональных данных
         </div>
       </div>
     </form>
   </div>
-
 </template>
 
 <script>
-    import translator from "../translator";
-    import Abutton from './A-button.vue';
+    import translator from '../translator';
+    import Abutton from './A-button';
 
     export default {
         name: 'Form',
         components: {
             Abutton,
-        },
-        data() {
-            return {
-                translator: translator,
-            }
         },
         props: {
             buttonTheme: {
@@ -49,9 +68,23 @@
             wide: {
                 type: Boolean,
                 default: true,
-            }
-        }
-    }
+            },
+        },
+        data() {
+          return {
+            translator,
+            formData: {
+              name: '',
+              phone: '',
+            },
+          };
+        },
+      methods: {
+        setFormValue(event, field) {
+          this.formData[field] = event.target.value;
+        },
+      },
+    };
 </script>
 
 <style scoped>
@@ -67,7 +100,6 @@
     padding: 10px;
     z-index: 0;
   }
-
   .form__text {
     display: flex;
     align-items: center;
@@ -76,11 +108,9 @@
     text-transform: uppercase;
     font-size: 30px;
   }
-
-  .form_wide{
+  .form_wide {
     width: 100%;
     max-width: none;
-
   }
   .button__send{
     display: flex;
@@ -100,16 +130,11 @@
       width: 50%;
       margin-left: 10%;
     }
-
     .button__send-item{
       width: 100%;
     }
-
     .agree{
       font-size: 12px;
     }
-
   }
-
-
 </style>

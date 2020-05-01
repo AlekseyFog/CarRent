@@ -1,31 +1,33 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header />
     <div class="container container_page">
-      <City/>
-      <Splash/>
-      <Form/>
-      <Advantages/>
-      <Terms/>
-      <Form :wide="true" button-theme="secondary"></Form>
-      <Footer/>
+      <City />
+      <Splash />
+      <Form />
+      <Advantages />
+      <Terms />
+      <Form
+        :wide="true"
+        button-theme="secondary"
+      />
+      <Footer />
     </div>
   </div>
 </template>
 
 <script>
-    import Header from './components/Header.vue';
-    import City from "./components/City.vue";
-    import Splash from "./components/Splash.vue";
-    import Form from "./components/Form.vue";
-    import Advantages from "./components/Advantages.vue";
-    import Terms from "./components/Terms.vue";
-    import Footer from "./components/Footer.vue";
+  import Header from './components/Header';
+  import City from './components/City';
+  import Splash from './components/Splash';
+  import Form from './components/Form';
+  import Advantages from './components/Advantages';
+  import Terms from './components/Terms';
+  import Footer from './components/Footer';
 
-export default {
-
-  name: 'App',
-  components: {
+  export default {
+    name: 'App',
+    components: {
       Header,
       City,
       Splash,
@@ -33,8 +35,8 @@ export default {
       Advantages,
       Terms,
       Footer,
-  }
-}
+    },
+};
 </script>
 
 <style>
@@ -62,4 +64,3 @@ export default {
     padding-top: 120px;
   }
 </style>
-
