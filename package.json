@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:clear": "rimraf -rf build/ rimraf -rf docs/",
+    "build:clear": "rimraf -rf docs/",
     "build:project": "vue-cli-service build",
-    "build:add": "git add docs/",
-    "build:commit": "git commit -m 'build for prod'",
-    "build": "npm run build:clear && npm run build:project && npm run build:add && npm run build:commit",
+    "build": "npm run build:clear && npm run build:project",
     "lint": "npx eslint --ext .js,.vue .",
     "lint:fix": "npx eslint --ext .js,.vue . --fix"
   },
@@ -28,6 +26,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "axios": "^0.19.2",
+    "rimraf": "^3.0.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
     "favicons-webpack-plugin": "^2.1.0",
