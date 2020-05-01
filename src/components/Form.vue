@@ -6,7 +6,10 @@
     <div class="form__text">
       {{ translator.formHeader }}
     </div>
-    <form class="form__wrapper container">
+    <form
+      class="form__wrapper container"
+      @submit.prevent
+    >
       <div class="row">
         <div class="col-12">
           <input
@@ -36,6 +39,7 @@
           <Abutton
             class="button__send-item"
             :theme="buttonTheme"
+            @click="formSubmit"
           >
             {{ translator.send }}
           </Abutton>
@@ -52,39 +56,52 @@
 </template>
 
 <script>
-    import translator from '../translator';
-    import Abutton from './A-button';
+  import axios from 'axios';
 
-    export default {
-        name: 'Form',
-        components: {
-            Abutton,
-        },
-        props: {
-            buttonTheme: {
-                type: String,
-                default: 'primary',
-            },
-            wide: {
-                type: Boolean,
-                default: true,
-            },
-        },
-        data() {
-          return {
-            translator,
-            formData: {
-              name: '',
-              phone: '',
-            },
-          };
-        },
-      methods: {
-        setFormValue(event, field) {
-          this.formData[field] = event.target.value;
-        },
+  import translator from '../translator';
+  import Abutton from './A-button';
+
+  export default {
+    name: 'Form',
+    components: {
+      Abutton,
+    },
+    props: {
+      buttonTheme: {
+        type: String,
+        default: 'primary',
       },
-    };
+      wide: {
+        type: Boolean,
+        default: true,
+      },
+    },
+    data() {
+      return {
+        translator,
+        formData: {
+          name: '',
+          phone: '',
+        },
+      };
+    },
+    methods: {
+      setFormValue(event, field) {
+        this.formData[field] = event.target.value;
+      },
+      formSubmit() {
+        const name = this.formData.name;
+        const phone = this.formData.phone;
+        const emailText = `абонент с номером ${phone} и именем ${name} хочет стать клиентом`;
+
+        return axios({
+          method: 'POST',
+          url: '/post',
+          data: { text: emailText },
+        });
+      },
+    },
+  };
 </script>
 
 <style scoped>
@@ -100,6 +117,7 @@
     padding: 10px;
     z-index: 0;
   }
+
   .form__text {
     display: flex;
     align-items: center;
@@ -108,32 +126,38 @@
     text-transform: uppercase;
     font-size: 30px;
   }
+
   .form_wide {
     width: 100%;
     max-width: none;
   }
-  .button__send{
+
+  .button__send {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .button__send-item{
+
+  .button__send-item {
     width: 100%;
   }
-  .agree{
+
+  .agree {
     font-size: 15px;
   }
 
   @media (min-width: 768px) {
-    .form{
+    .form {
       display: inline-block;
       width: 50%;
       margin-left: 10%;
     }
-    .button__send-item{
+
+    .button__send-item {
       width: 100%;
     }
-    .agree{
+
+    .agree {
       font-size: 12px;
     }
   }

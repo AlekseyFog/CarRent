@@ -1,28 +1,37 @@
 <template>
-  <div class="a-button" :class="'a-button_' + theme">
-    <button type="submit">
-      <slot/>
+  <div
+    class="a-button"
+    :class="'a-button_' + theme"
+    @click="clickHandler"
+  >
+    <button>
+      <slot />
     </button>
   </div>
 </template>
 
 <script>
-    import translator from "../translator";
+    import translator from '../translator';
 
     export default {
-        name: 'A-button',
-        data() {
-            return {
-                translator: translator,
-            }
+      name: 'AButton',
+      props: {
+        theme: {
+          type: String,
+          default: 'primary',
         },
-        props: {
-            theme: {
-                type: String,
-                default: 'primary',
-            }
-        }
-    }
+      },
+      data() {
+        return {
+          translator,
+        };
+      },
+      methods: {
+        clickHandler() {
+          this.$emit('click');
+        },
+      }
+    };
 </script>
 
 <style scoped>
