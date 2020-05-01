@@ -28,7 +28,7 @@ const faviconPluginOptions = {
   },
 };
 
-const outputDir = '../docs';
+const outputDir = '/docs';
 const developPath = '/';
 const productionPath = '/';
 const publicPath = process.env.NODE_ENV === 'production' ? productionPath : developPath;
