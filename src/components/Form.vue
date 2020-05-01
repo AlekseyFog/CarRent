@@ -117,7 +117,7 @@
         this.formData[field] = event.target.value;
       },
       setTermsValue(event) {
-        this.terms = JSON.parse(event.target.value);
+        this.terms = event.target.checked
       },
       clearFormData() {
         this.formData.name = '';
