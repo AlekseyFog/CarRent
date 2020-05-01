@@ -28,8 +28,14 @@ const faviconPluginOptions = {
   },
 };
 
+const outputDir = '../docs';
+const developPath = '/';
+const productionPath = '/';
+const publicPath = process.env.NODE_ENV === 'production' ? productionPath : developPath;
+
 module.exports = {
-  outputDir: path.resolve(__dirname, './docs'),
+  outputDir,
+  publicPath,
   lintOnSave: false,
   runtimeCompiler: true,
   productionSourceMap: false,
