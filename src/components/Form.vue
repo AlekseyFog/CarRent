@@ -39,6 +39,7 @@
           <Abutton
             class="button__send-item"
             :theme="buttonTheme"
+            :disabled="formWasSend"
             @click="formSubmit"
           >
             {{ translator.send }}
@@ -84,6 +85,7 @@
     data() {
       return {
         translator,
+        formWasSend: false,
         formData: {
           name: '',
           phone: '',
@@ -116,6 +118,10 @@
         emailjs.send(serviceId, templateId, templateParams, userId)
           .then(() => {
             this.clearFormData();
+            this.formWasSend = true;
+            setTimeout(() => {
+              this.formWasSend = false;
+            }, 5000);
           }, () => {
             console.log('Ошибка');
           });
