@@ -41,7 +41,7 @@
           <Abutton
             class="button__send-item"
             :theme="buttonTheme"
-            :disabled="formWasSend"
+            :disabled="formWasSend || !terms"
             @click="formSubmit"
           >
             {{ translator.send }}
@@ -50,7 +50,8 @@
         <div class="agree col-12 col-sm-6">
           <input
             type="checkbox"
-            checked
+            :value="terms"
+            @input="setTermsValue"
           /> Согласен c договором оферты и даю свое согласие на обработку персональных данных
         </div>
       </div>
@@ -87,6 +88,7 @@
     data() {
       return {
         translator,
+        terms: false,
         formWasSend: false,
         formData: {
           name: '',
@@ -106,6 +108,9 @@
     methods: {
       setFormValue(event, field) {
         this.formData[field] = event.target.value;
+      },
+      setTermsValue(event) {
+        this.terms = event.target.value;
       },
       clearFormData() {
         this.formData.name = '';
