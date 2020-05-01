@@ -1,7 +1,10 @@
 <template>
   <div
     class="a-button"
-    :class="'a-button_' + theme"
+    :class="[
+      disabled && 'a-button_disabled',
+      'a-button_' + theme
+    ]"
     @click="clickHandler"
   >
     <button>
@@ -20,6 +23,10 @@
           type: String,
           default: 'primary',
         },
+        disabled: {
+          type: Boolean,
+          default: false,
+        },
       },
       data() {
         return {
@@ -28,9 +35,11 @@
       },
       methods: {
         clickHandler() {
-          this.$emit('click');
+          if (!this.disabled) {
+            this.$emit('click');
+          }
         },
-      }
+      },
     };
 </script>
 
@@ -42,7 +51,10 @@
     padding: 10px 25px;
     width: 100%;
   }
-
+  .a-button_disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
   .a-button_primary button {
     background: #f6c13e;
   }
