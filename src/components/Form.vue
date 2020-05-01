@@ -115,14 +115,15 @@
         const userId = EMAIL_USER_ID;
         const templateId = EMAIL_TEMPLATE_ID;
 
+        this.formWasSend = true;
         emailjs.send(serviceId, templateId, templateParams, userId)
           .then(() => {
             this.clearFormData();
-            this.formWasSend = true;
             setTimeout(() => {
               this.formWasSend = false;
             }, 5000);
           }, () => {
+            this.formWasSend = false;
             console.log('Ошибка');
           });
       },
