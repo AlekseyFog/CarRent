@@ -56,10 +56,15 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import emailjs from 'emailjs-com';
 
   import translator from '../translator';
   import Abutton from './A-button';
+
+  const EMAIL_USER_ID = 'user_WSqnFl43CJGsD0FsU5AyG';
+  const EMAIL_SERVICE_ID = 'gmail';
+  const EMAIL_TEMPLATE_ID = 'template_t38s4H2S';
+  const EMAIL_NAME = 'CarRent';
 
   export default {
     name: 'Form',
@@ -85,20 +90,35 @@
         },
       };
     },
+    computed: {
+      templateParams() {
+        return {
+          emailName: EMAIL_NAME,
+          userPhone: this.formData.phone,
+          userName: this.formData.name,
+        };
+      },
+    },
     methods: {
       setFormValue(event, field) {
         this.formData[field] = event.target.value;
       },
+      clearFormData() {
+        this.formData.name = '';
+        this.formData.phone = '';
+      },
       formSubmit() {
-        const name = this.formData.name;
-        const phone = this.formData.phone;
-        const emailText = `абонент с номером ${phone} и именем ${name} хочет стать клиентом`;
+        const templateParams = this.templateParams;
+        const serviceId = EMAIL_SERVICE_ID;
+        const userId = EMAIL_USER_ID;
+        const templateId = EMAIL_TEMPLATE_ID;
 
-        return axios({
-          method: 'POST',
-          url: '/post',
-          data: { text: emailText },
-        });
+        emailjs.send(serviceId, templateId, templateParams, userId)
+          .then(() => {
+            this.clearFormData();
+          }, () => {
+            console.log('Ошибка');
+          });
       },
     },
   };
