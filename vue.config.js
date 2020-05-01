@@ -29,6 +29,7 @@ const faviconPluginOptions = {
 };
 
 module.exports = {
+  outputDir: path.resolve(__dirname, './docs'),
   lintOnSave: false,
   runtimeCompiler: true,
   productionSourceMap: false,
