@@ -13,14 +13,14 @@
       <City />
       <Splash />
       <Form
-        @lesha-loh="setModalIsVisible"
+        @showModal="setModalIsVisible"
       />
       <Advantages />
       <Terms />
       <Form
         :wide="true"
         button-theme="secondary"
-        @lesha-loh="setModalIsVisible"
+        @showModal="setModalIsVisible"
       />
       <Footer />
     </div>

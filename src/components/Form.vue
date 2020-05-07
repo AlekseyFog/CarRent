@@ -136,7 +136,7 @@
             setTimeout(() => {
               this.formWasSend = false;
               this.clearFormData();
-              this.$emit('lesha-loh');
+              this.$emit('showModal');
             }, 5000);
           }, () => {
             this.formWasSend = false;
