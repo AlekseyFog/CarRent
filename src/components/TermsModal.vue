@@ -57,14 +57,14 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 20px;
   }
   .terms-modal__text {
     display: block;
     width: calc(100% - 120px);
     font-size: 13px;
     line-height: 15px;
-    padding: 7px 0;
+    padding: 7px 10px;
     color: lightgray;
   }
   .terms-modal__button {

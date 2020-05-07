@@ -4,16 +4,23 @@
       v-if="termsIsVisible"
       @accept="acceptHandler"
     />
+    <ModalSuccess
+      v-if="modalIsVisible"
+      @close="hideModal"
+    />
     <Header />
     <div class="container container_page">
       <City />
       <Splash />
-      <Form />
+      <Form
+        @lesha-loh="setModalIsVisible"
+      />
       <Advantages />
       <Terms />
       <Form
         :wide="true"
         button-theme="secondary"
+        @lesha-loh="setModalIsVisible"
       />
       <Footer />
     </div>
@@ -24,6 +31,7 @@
   import $cookies from 'vue-cookies';
 
   import TermsModal from './components/TermsModal';
+  import ModalSuccess from './components/ModalSuccess';
   import Header from './components/Header';
   import City from './components/City';
   import Splash from './components/Splash';
@@ -38,6 +46,7 @@
     name: 'App',
     components: {
       TermsModal,
+      ModalSuccess,
       Header,
       City,
       Splash,
@@ -50,6 +59,7 @@
       return {
         termsIsAccepted: false,
         termsWasAccepted: false,
+        modalIsVisible: false,
       };
     },
     computed: {
@@ -65,8 +75,14 @@
         const stringValue = $cookies.get(TERMS_COOKIE_NAME) || 'false';
         this.termsWasAccepted = JSON.parse(stringValue);
       },
+      setModalIsVisible() {
+        this.modalIsVisible = true;
+      },
       acceptHandler() {
         this.termsIsAccepted = true;
+      },
+      hideModal() {
+        this.modalIsVisible = false;
       },
     },
   };

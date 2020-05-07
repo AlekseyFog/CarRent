@@ -90,6 +90,7 @@
         translator,
         terms: false,
         formWasSend: false,
+        modalIsVisible: false,
         formData: {
           name: '',
           phone: '',
@@ -132,16 +133,17 @@
         this.formWasSend = true;
         emailjs.send(serviceId, templateId, templateParams, userId)
           .then(() => {
-            this.clearFormData();
             setTimeout(() => {
               this.formWasSend = false;
+              this.clearFormData();
+              this.$emit('lesha-loh');
             }, 5000);
           }, () => {
             this.formWasSend = false;
             console.log('Ошибка');
           });
+        },
       },
-    },
   };
 </script>
 
