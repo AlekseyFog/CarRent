@@ -9,14 +9,14 @@
       <div class="splash__info_adress">{{ translator.adress }}</div>
     </div>
     <div class="splash__image-wrapper">
-      <img src="../assets/car.png" alt="car">
+      <img src="../assets/car.png" alt="car"/>
     </div>
   </div>
 </template>
 
 <script>
-    import translator from "../translator";
-    import AButton from "./A-button";
+    import translator from '../translator';
+    import AButton from './A-button';
 
     export default {
         name: 'Splash',

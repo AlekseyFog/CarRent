@@ -52,7 +52,7 @@
             type="checkbox"
             :value="terms"
             @input="setTermsValue"
-          /> Согласен c договором оферты и даю свое согласие на обработку персональных данных
+          /> {{ translator.agree }}
         </div>
       </div>
     </form>

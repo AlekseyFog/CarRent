@@ -18,12 +18,17 @@
           <div class="advantages__header"> {{ translator.advantagesSheduleTitle }}</div>
           <div class="advantages__element"> {{ translator.advantagesShedule }}</div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="advantages__img"><img src="../assets/percent.png" width="100%"/></div>
           <div class="advantages__header"> {{ translator.advantagesComissTitle }}</div>
           <div class="advantages__element"> {{ translator.advantagesComiss }}</div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
+          <div class="advantages__img"><img src="../assets/percent.png" width="100%"/></div>
+          <div class="advantages__header"> {{ translator.advantagesHelpTitle }}</div>
+          <div class="advantages__element"> {{ translator.advantagesHelp }}</div>
+        </div>
+        <div class="col-12 col-md-4">
           <div class="advantages__img"><img src="../assets/shester.png" width="100%"/></div>
           <div class="advantages__header"> {{ translator.advantagesDiscountTitle }}</div>
           <div class="advantages__element"> {{ translator.advantagesDiscount }}</div>
