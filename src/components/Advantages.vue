@@ -51,7 +51,7 @@
 </template>
 
 <script>
-    import translator from "../translator";
+    import translator from '../translator';
 
     export default {
         name: 'Advantages',
