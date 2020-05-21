@@ -3,26 +3,35 @@
     <TermsModal
       v-if="termsIsVisible"
       @accept="acceptHandler"
+      @show-modal="setModal"
     />
-    <ModalSuccess
+    <Modal
       v-if="modalIsVisible"
+      :modal-type="modalType"
       @close="hideModal"
     />
     <Header />
-    <div class="container container_page">
-      <City />
-      <Splash />
-      <Form
-        @showModal="setModalIsVisible"
-      />
-      <Advantages />
-      <Terms />
-      <Form
-        :wide="true"
-        button-theme="secondary"
-        @showModal="setModalIsVisible"
-      />
-      <Footer />
+    <div
+      class="default-layout"
+      :class="[
+        modalIsVisible && 'default-layout_locked'
+      ]"
+    >
+      <div class="container container_page">
+        <City />
+        <Splash />
+        <Form
+          @show-modal="setModal"
+        />
+        <Advantages />
+        <Terms />
+        <Form
+          :wide="true"
+          button-theme="secondary"
+          @show-modal="setModal"
+        />
+        <Footer />
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +40,6 @@
   import $cookies from 'vue-cookies';
 
   import TermsModal from './components/TermsModal';
-  import ModalSuccess from './components/ModalSuccess';
   import Header from './components/Header';
   import City from './components/City';
   import Splash from './components/Splash';
@@ -39,14 +47,15 @@
   import Advantages from './components/Advantages';
   import Terms from './components/Terms';
   import Footer from './components/Footer';
+  import Modal from './components/Modal';
 
   const TERMS_COOKIE_NAME = 'terms_is_accepted';
 
   export default {
     name: 'App',
     components: {
+      Modal,
       TermsModal,
-      ModalSuccess,
       Header,
       City,
       Splash,
@@ -60,6 +69,7 @@
         termsIsAccepted: false,
         termsWasAccepted: false,
         modalIsVisible: false,
+        modalType: '',
       };
     },
     computed: {
@@ -75,14 +85,16 @@
         const stringValue = $cookies.get(TERMS_COOKIE_NAME) || 'false';
         this.termsWasAccepted = JSON.parse(stringValue);
       },
-      setModalIsVisible() {
-        this.modalIsVisible = true;
-      },
       acceptHandler() {
         this.termsIsAccepted = true;
       },
+      setModal(type) {
+        this.modalIsVisible = true;
+        this.modalType = type;
+      },
       hideModal() {
         this.modalIsVisible = false;
+        this.modalType = '';
       },
     },
   };
@@ -94,6 +106,8 @@
 
   html {
     scroll-behavior: smooth;
+    user-select: none;
+    cursor: default;
   }
 
   * {
@@ -111,5 +125,10 @@
 
   .container_page {
     padding-top: 120px;
+  }
+  .default-layout_locked{
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 </style>

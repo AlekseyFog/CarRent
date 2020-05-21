@@ -24,7 +24,7 @@
           <div class="advantages__element"> {{ translator.advantagesComiss }}</div>
         </div>
         <div class="col-12 col-md-4">
-          <div class="advantages__img"><img src="../assets/percent.png" width="100%"/></div>
+          <div class="advantages__img"><img src="../assets/l.png" width="100%"/></div>
           <div class="advantages__header"> {{ translator.advantagesHelpTitle }}</div>
           <div class="advantages__element"> {{ translator.advantagesHelp }}</div>
         </div>

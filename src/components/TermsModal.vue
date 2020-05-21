@@ -3,6 +3,7 @@
     <div class="terms-modal__wrapper">
       <div class="terms-modal__text">
         {{ translator.termsText }}
+        <span @click="setPoliticIsVisible"><b>условиями использования файлов cookie.</b></span>
       </div>
       <div class="terms-modal__button">
         <Abutton
@@ -38,6 +39,9 @@
         $cookies.set(TERMS_COOKIE_NAME, true);
         this.$emit('accept');
       },
+      setPoliticIsVisible() {
+        this.$emit('show-modal', 'policy');
+      },
     },
   };
 </script>
@@ -71,4 +75,7 @@
     display: block;
     width: 120px;
   }
+  span b {
+    color: #ffe619;
+    cursor: pointer;}
 </style>

@@ -2,14 +2,19 @@
   <div class="splash">
     <div class="splash__info">
       <div class="splash__info_button-wrapper">
-        <a href='tel:+79112767606'>
+        <a href="tel:+79112767606">
           <AButton class="header__button">{{ translator.phoneNumber }}</AButton>
         </a>
       </div>
-      <div class="splash__info_adress">{{ translator.adress }}</div>
+      <div class="splash__info_adress">
+        {{ translator.adress }}
+      </div>
     </div>
     <div class="splash__image-wrapper">
-      <img src="../assets/car.png" alt="car"/>
+      <img
+        src="../assets/car.png"
+        alt="car"
+      />
     </div>
   </div>
 </template>
@@ -20,15 +25,15 @@
 
     export default {
         name: 'Splash',
+        components: {
+            AButton,
+        },
         data() {
             return {
-                translator: translator,
-            }
+                translator,
+            };
         },
-        components: {
-            AButton
-        },
-    }
+    };
 </script>
 
 <style scoped>
@@ -74,7 +79,6 @@
   a:active{
     color: black;
   }
-
 
 
   @media all and (min-width: 768px) {

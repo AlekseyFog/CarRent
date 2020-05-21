@@ -52,7 +52,14 @@
             type="checkbox"
             :value="terms"
             @input="setTermsValue"
-          /> {{ translator.agree }}
+          /> принимаю
+          <span @click="setOffertIsVisible">
+            <b>договор оферты</b>
+          </span>
+          и даю свое согласие на
+          <span @click="setPoliticIsVisible">
+            <b>обработку персональных данных</b>
+          </span>
         </div>
       </div>
     </form>
@@ -118,7 +125,7 @@
         this.formData[field] = event.target.value;
       },
       setTermsValue(event) {
-        this.terms = event.target.checked
+        this.terms = event.target.checked;
       },
       clearFormData() {
         this.formData.name = '';
@@ -136,14 +143,20 @@
             setTimeout(() => {
               this.formWasSend = false;
               this.clearFormData();
-              this.$emit('showModal');
+              this.$emit('show-modal', 'success');
             }, 5000);
           }, () => {
             this.formWasSend = false;
-            console.log('Ошибка');
+            console.warn('Ошибка');
           });
         },
+      setOffertIsVisible() {
+        this.$emit('show-modal', 'offer');
       },
+      setPoliticIsVisible() {
+        this.$emit('show-modal', 'policy');
+      },
+    },
   };
 </script>
 
@@ -187,6 +200,10 @@
 
   .agree {
     font-size: 15px;
+  }
+  .agree span b {
+    color: #ffe619;
+    cursor: pointer;
   }
 
   @media (min-width: 768px) {
