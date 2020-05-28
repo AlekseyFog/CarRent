@@ -30,7 +30,8 @@
           button-theme="secondary"
           @show-modal="setModal"
         />
-        <Footer />
+        <Footer
+          @show-modal="setModal"/>
       </div>
     </div>
   </div>
@@ -120,7 +121,7 @@
   }
 
   body {
-    font-family: 'Ubuntu';
+    font-family: 'Ubuntu',serif;
   }
 
   .container_page {

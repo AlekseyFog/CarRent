@@ -8,6 +8,7 @@
         <img
           src="../assets/close.png"
           width="100%"
+          alt="close"
         />
       </button>
       <div v-if="modalType === 'offer'">

@@ -1,34 +1,37 @@
 <template>
   <div class="header">
     <div class="header__logo">
-      <img src="../assets/logo.png"/>
-      <div class="header__logo_name">{{ translator.headerName }}</div>
+      <img src="../assets/logo.png" />
+      <div class="header__logo_name">
+        {{ translator.headerName }}
+      </div>
     </div>
     <div class="header__info">
-      <div class="header__adress">{{ translator.adress }}</div>
-      <a href='tel:+79112767606'>
-      <Abutton class="header__button">{{ translator.phoneNumber }}</Abutton>
+      <div class="header__adress">
+        {{ translator.adress }}
+      </div>
+      <a href="tel:+79112767606">
+        <Abutton class="header__button">{{ translator.phoneNumber }}</Abutton>
       </a>
     </div>
   </div>
-
 </template>
 
 <script>
-    import translator from "../translator";
-    import Abutton from "./A-button.vue"
+    import translator from '../translator';
+    import Abutton from './A-button';
 
     export default {
         name: 'Header',
-        data() {
-            return {
-                translator: translator,
-            }
-        },
         components: {
             Abutton,
         },
-    }
+        data() {
+            return {
+                translator,
+            };
+        },
+    };
 </script>
 
 <style scoped>

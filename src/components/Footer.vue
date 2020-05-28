@@ -11,7 +11,11 @@
       <div class="row">
         <div class="col-12 col-md-6">
           <div class="footer__contacts">
-            {{ translator.adress }} <br /> {{ translator.phoneNumber }}
+            {{ translator.adress }} <br /> {{ translator.phoneNumber }} <br /> {{ translator.email }} <br />
+            <div class="buttons">
+              <button @click="setOffertIsVisible">Договор оферты</button> <br />
+              <button @click="setPoliticIsVisible">Политика конфидециальности</button>
+            </div>
           </div>
         </div>
         <div class="col-12 col-md-6">
@@ -55,6 +59,14 @@
         coords: ['59.878798', '30.329774'],
       };
     },
+    methods: {
+      setOffertIsVisible() {
+        this.$emit('show-modal', 'offer');
+      },
+      setPoliticIsVisible() {
+        this.$emit('show-modal', 'policy');
+      },
+    },
   };
 </script>
 
@@ -74,8 +86,8 @@
     text-transform: uppercase;
   }
   .footer__contacts {
+    line-height: 30px;
     margin-right: auto;
-    text-align: center;
   }
   .footer__map {
     text-align: center;
@@ -88,6 +100,15 @@
   }
   .footer__end {
     font-size: 10px;
-    font-weight: bold;
+  }
+  .buttons{
+    margin-top: 40px;
+  }
+  button{
+    background: #ffc107;
+    border: none;
+    margin: 10px auto;
+    padding: 0 10px;
+    border-radius: 30px;
   }
 </style>
