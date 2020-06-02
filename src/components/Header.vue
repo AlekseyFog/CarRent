@@ -2,9 +2,9 @@
   <div class="header">
     <div class="header__logo">
       <img src="../assets/logo.png" />
-      <div class="header__logo_name">
+      <h1 class="header__logo_name">
         {{ translator.headerName }}
-      </div>
+      </h1>
     </div>
     <div class="header__info">
       <div class="header__adress">
